@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}">
+<head>
+    <title>Thêm Danh Mục Mới</title>
+</head>
+<body>
+    <div layout:fragment="content" class="mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <a th:href="@{/admin/categories}" class="btn btn-outline-info mb-3">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Quay lại danh sách
+                </a>
+
+                <div class="card bg-dark text-light border-secondary shadow">
+                    <div class="card-header bg-secondary text-warning text-center fw-bold fs-5 py-3">
+                        <i class="fa-solid fa-plus-circle me-2"></i>THÊM DANH MỤC MỚI
+                    </div>
+                    <div class="card-body p-4">
+                        <form th:action="@{/admin/category/insert}" th:object="${category}" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Tên danh mục <span class="text-danger">*</span>:</label>
+                                <input type="text"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="categoryname"
+                                       required
+                                       placeholder="Nhập tên danh mục...">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Upload Hình ảnh từ máy tính (images1):</label>
+                                <input type="file"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="images1"
+                                       accept="image/*">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Hoặc nhập Link hình ảnh (URL):</label>
+                                <input type="text"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="images"
+                                       placeholder="Nhập đường dẫn URL hình ảnh...">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label text-info fw-bold">Trạng thái:</label>
+                                <select class="form-select bg-dark text-light border-secondary" name="status">
+                                    <option value="1" selected>Hoạt động</option>
+                                    <option value="0">Khóa</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 fw-bold py-2 shadow-sm">
+                                <i class="fa-solid fa-floppy-disk me-1"></i> LƯU DANH MỤC
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

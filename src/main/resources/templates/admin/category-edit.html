@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin}">
+<head>
+    <title>Cập nhật Danh Mục</title>
+</head>
+<body>
+    <div layout:fragment="content" class="mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <a th:href="@{/admin/categories}" class="btn btn-outline-info mb-3">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Quay lại danh sách
+                </a>
+
+                <div class="card bg-dark text-light border-secondary shadow">
+                    <div class="card-header bg-secondary text-warning text-center fw-bold fs-5 py-3">
+                        <i class="fa-solid fa-pen-to-square me-2"></i>CẬP NHẬT DANH MỤC
+                    </div>
+                    <div class="card-body p-4">
+                        <form th:action="@{/admin/category/update}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="categoryid" th:value="${cate.categoryid}">
+
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Tên danh mục <span class="text-danger">*</span>:</label>
+                                <input type="text"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="categoryname"
+                                       required
+                                       th:value="${cate.categoryname}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Đổi Hình ảnh từ máy tính (images1):</label>
+                                <input type="file"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="images1"
+                                       accept="image/*">
+                                <div class="mt-2 text-muted">
+                                    <small>Ảnh hiện tại: </small>
+                                    <span th:if="${cate.images != null and !cate.images.isEmpty()}">
+                                        <img th:if="${cate.images.startsWith('http')}"
+                                             th:src="${cate.images}"
+                                             alt="Current"
+                                             height="40"
+                                             class="rounded border border-secondary">
+                                        <img th:if="${!cate.images.startsWith('http')}"
+                                             th:src="@{/image(fname=${cate.images})}"
+                                             alt="Current"
+                                             height="40"
+                                             class="rounded border border-secondary"
+                                             onerror="this.src='/images/avatar.png';">
+                                    </span>
+                                    <span th:if="${cate.images == null or cate.images.isEmpty()}" class="badge bg-secondary">
+                                        Chưa có ảnh
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-info fw-bold">Hoặc dùng link (URL):</label>
+                                <input type="text"
+                                       class="form-control bg-dark text-light border-secondary"
+                                       name="images"
+                                       th:value="${cate.images}">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label text-info fw-bold">Trạng thái:</label>
+                                <select class="form-select bg-dark text-light border-secondary" name="status">
+                                    <option value="1" th:selected="${cate.status == 1}">Hoạt động</option>
+                                    <option value="0" th:selected="${cate.status == 0}">Khóa</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 fw-bold py-2 shadow-sm">
+                                <i class="fa-solid fa-floppy-disk me-1"></i> CẬP NHẬT
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

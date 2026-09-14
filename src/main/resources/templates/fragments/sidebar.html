@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="sidebar" class="bg-secondary rounded shadow p-3 sidebar">
+    <div class="position-sticky">
+        <h5 class="text-warning text-center border-bottom border-light pb-2 mb-3 fw-bold">
+            <i class="fa-solid fa-bars me-1"></i> ADMIN MENU
+        </h5>
+        <ul class="nav flex-column gap-2">
+            <li class="nav-item">
+                <a class="nav-link btn text-start btn-warning text-dark fw-bold shadow-sm"
+                   th:href="@{/admin/categories}">
+                    📁 Quản lý Danh mục
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn text-start btn-outline-dark text-light"
+                   th:href="@{/admin/category/add}">
+                    ➕ Thêm mới Danh mục
+                </a>
+            </li>
+            <li class="nav-item border-top border-dark pt-2 mt-2">
+                <a class="nav-link btn text-start btn-outline-dark text-light"
+                   href="javascript:void(0);"
+                   onclick="alert('Chức năng Quản lý Sản phẩm đang hoàn thiện!');">
+                    🛒 Quản lý Sản phẩm
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn text-start btn-outline-dark text-light"
+                   href="javascript:void(0);"
+                   onclick="alert('Chức năng Quản lý Người dùng đang hoàn thiện!');">
+                    👥 Quản lý Người dùng
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
